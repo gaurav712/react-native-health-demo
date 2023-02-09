@@ -10,14 +10,26 @@ import {
 
 const App = () => {
   const [stepCount, setStepCount] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
   const [bloodType, setBloodType] = useState(0);
   const [gender, setGender] = useState('');
   const [age, setAge] = useState(0);
+
+  /* Activity */
   const [activeEnergy, setActiveEnergy] = useState(0);
   const [basalEnergy, setBasalEnergy] = useState(0);
   const [standingTime, setStandingTime] = useState(0);
+
+  /* Body */
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [heightSamples, setHeightSamples] = useState('');
+  const [weightSamples, setWeightSamples] = useState('');
+  const [temperature, setTemperature] = useState(0);
+  const [temperatureSamples, setTemperatureSamples] = useState('');
+  const [fatPercentage, setFatPercentage] = useState(0);
+  const [fatPercentageSamples, setFatPercentageSamples] = useState('');
+  const [leanBodyMass, setLeanBodyMass] = useState(0);
+  const [leanBodyMassSamples, setLeanBodyMassSamples] = useState('');
 
   const colorScheme = useColorScheme();
 
@@ -64,25 +76,6 @@ const App = () => {
         }
         const {value} = results;
         setStepCount(value);
-      });
-
-      /* HEIGHT & WEIGHT */
-      AppleHealthKit.getLatestWeight({}, (err, results) => {
-        if (err) {
-          console.log('error getting latest weight: ', err);
-          return;
-        }
-        const {value} = results;
-        setWeight((value * 0.4535924).toFixed(0));
-      });
-
-      AppleHealthKit.getLatestHeight({}, (err, results) => {
-        if (err) {
-          console.log('error getting latest height: ', err);
-          return;
-        }
-        const {value} = results;
-        setHeight((value * 2.54).toFixed(0));
       });
 
       /* BLOOD TYPE */
@@ -136,45 +129,76 @@ const App = () => {
         }
         console.log(results);
       });
+
+      /* BODY */
+      AppleHealthKit.getLatestWeight({}, (err, results) => {
+        if (err) {
+          console.log('error getting latest weight: ', err);
+          return;
+        }
+        const {value} = results;
+        setWeight((value * 0.4535924).toFixed(0));
+      });
+
+      AppleHealthKit.getLatestHeight({}, (err, results) => {
+        if (err) {
+          console.log('error getting latest height: ', err);
+          return;
+        }
+        const {value} = results;
+        setHeight((value * 2.54).toFixed(0));
+      });
+
+      let samplesOptions = {
+        startDate: new Date(2021, 0, 0).toISOString(),
+        limit: 5,
+      };
+
+      AppleHealthKit.getBodyTemperatureSamples(
+        samplesOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          console.log('temperature samples', results);
+        },
+      );
+
+      AppleHealthKit.getLatestBodyFatPercentage(null, (err, results) => {
+        if (err) {
+          return;
+        }
+        console.log('body fat percentage', results);
+      });
+
+      AppleHealthKit.getBodyFatPercentageSamples(
+        samplesOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          console.log('body fat percentage samples', results);
+        },
+      );
+
+      AppleHealthKit.getLatestLeanBodyMass(null, (err, results) => {
+        if (err) {
+          return;
+        }
+        console.log('lean mass', results);
+      });
+
+      AppleHealthKit.getLeanBodyMassSamples(samplesOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        console.log('lean body mass samples', results);
+      });
     });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        About Me
-      </Text>
-      <View style={styles.profileContainer}>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Height: ${height} centimeters`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Weight: ${weight} kilograms`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Blood Group: ${bloodType}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Gender: ${gender}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Age: ${age}`}</Text>
-      </View>
       <Text
         style={[
           styles.header,
@@ -189,6 +213,8 @@ const App = () => {
             {color: colorScheme == 'dark' ? 'white' : 'black'},
           ]}>{`Steps walked today: ${stepCount}`}</Text>
       </View>
+
+      {/* ACTIVITY */}
       <Text
         style={[
           styles.header,
@@ -212,6 +238,67 @@ const App = () => {
             styles.text,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
           ]}>{`Standing time: ${standingTime}`}</Text>
+      </View>
+
+      {/* BODY */}
+      <Text
+        style={[
+          styles.header,
+          {color: colorScheme == 'dark' ? 'white' : 'black'},
+        ]}>
+        Body
+      </Text>
+      <View style={styles.profileContainer}>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Height: ${height}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Weight: ${weight}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Height Samples: ${heightSamples}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Weight Samples: ${weightSamples}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Temperature: ${temperature}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Temperature Samples: ${temperatureSamples}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Body Fat Percentage: ${fatPercentage}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Fat Percentage Samples: ${fatPercentageSamples}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Lean Body Mass: ${leanBodyMass}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Lean Body Mass Samples: ${leanBodyMassSamples}`}</Text>
       </View>
     </SafeAreaView>
   );
