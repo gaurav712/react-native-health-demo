@@ -15,6 +15,9 @@ const App = () => {
   const [bloodType, setBloodType] = useState(0);
   const [gender, setGender] = useState('');
   const [age, setAge] = useState(0);
+  const [activeEnergy, setActiveEnergy] = useState(0);
+  const [basalEnergy, setBasalEnergy] = useState(0);
+  const [standingTime, setStandingTime] = useState(0);
 
   const colorScheme = useColorScheme();
 
@@ -108,6 +111,31 @@ const App = () => {
         const {age} = results;
         setAge(age);
       });
+
+      /* ACTIVITY */
+      let activityOptions = {
+        startDate: new Date(2021, 0, 0).toISOString(), // required
+      };
+      AppleHealthKit.getActiveEnergyBurned(activityOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        console.log('active energy', results);
+      });
+
+      AppleHealthKit.getBasalEnergyBurned(activityOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        console.log('basal energy', results);
+      });
+
+      AppleHealthKit.getAppleStandTime(activityOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        console.log(results);
+      });
     });
   }, []);
 
@@ -160,6 +188,30 @@ const App = () => {
             styles.text,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
           ]}>{`Steps walked today: ${stepCount}`}</Text>
+      </View>
+      <Text
+        style={[
+          styles.header,
+          {color: colorScheme == 'dark' ? 'white' : 'black'},
+        ]}>
+        Activity
+      </Text>
+      <View style={styles.profileContainer}>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Active energy burnt: ${activeEnergy}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Basal energy burnt: ${basalEnergy}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Standing time: ${standingTime}`}</Text>
       </View>
     </SafeAreaView>
   );
