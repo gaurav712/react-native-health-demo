@@ -34,6 +34,13 @@ const App = () => {
   const [gender, setGender] = useState('');
   const [age, setAge] = useState(0);
 
+  /* Diet */
+  const [energyConsumedSamples, setEnergyConsumedSamples] = useState('');
+  const [proteinSamples, setProteinSamples] = useState('');
+  const [totalFatSamples, setTotalFatSamples] = useState('');
+  const [water, setWater] = useState(0);
+  const [waterSamples, setWaterSamples] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -340,6 +347,42 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Clinical Records: `}</Text>
+        </View>
+
+        {/* DIET */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Diet
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Energy Consumed Samples: ${energyConsumedSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Protein Samples: ${proteinSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Total Fat Samples: ${totalFatSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Water: ${water}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Water Samples: ${waterSamples}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
