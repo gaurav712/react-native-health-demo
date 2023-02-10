@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import AppleHealthKit from 'react-native-health';
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   useColorScheme,
@@ -201,128 +202,146 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        Health Info
-      </Text>
-      <View style={styles.profileContainer}>
+      <ScrollView>
         <Text
           style={[
-            styles.text,
+            styles.header,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Steps walked today: ${stepCount}`}</Text>
-      </View>
+          ]}>
+          Health Info
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Steps walked today: ${stepCount}`}</Text>
+        </View>
 
-      {/* ACTIVITY */}
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        Activity
-      </Text>
-      <View style={styles.profileContainer}>
+        {/* ACTIVITY */}
         <Text
           style={[
-            styles.text,
+            styles.header,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Active energy burnt: ${activeEnergy}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Basal energy burnt: ${basalEnergy}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Standing time: ${standingTime}`}</Text>
-      </View>
+          ]}>
+          Activity
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Active energy burnt: ${activeEnergy}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Basal energy burnt: ${basalEnergy}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Standing time: ${standingTime}`}</Text>
+        </View>
 
-      {/* BODY */}
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        Body
-      </Text>
-      <View style={styles.profileContainer}>
+        {/* BODY */}
         <Text
           style={[
-            styles.text,
+            styles.header,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Height: ${height}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Weight: ${weight}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Height Samples: ${heightSamples}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Weight Samples: ${weightSamples}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Temperature: ${temperature}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Temperature Samples: ${temperatureSamples}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Body Fat Percentage: ${fatPercentage}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Fat Percentage Samples: ${fatPercentageSamples}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Lean Body Mass: ${leanBodyMass}`}</Text>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Lean Body Mass Samples: ${leanBodyMassSamples}`}</Text>
-      </View>
+          ]}>
+          Body
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Height: ${height}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Weight: ${weight}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Height Samples: ${heightSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Weight Samples: ${weightSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Temperature: ${temperature}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Temperature Samples: ${temperatureSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Body Fat Percentage: ${fatPercentage}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Fat Percentage Samples: ${fatPercentageSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Lean Body Mass: ${leanBodyMass}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Lean Body Mass Samples: ${leanBodyMassSamples}`}</Text>
+        </View>
 
-      {/* CHARACTERISTICS */}
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        Characteristics
-      </Text>
-      <View style={styles.profileContainer}>
+        {/* CHARACTERISTICS */}
         <Text
           style={[
-            styles.text,
+            styles.header,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Biological Sex: ${gender}`}</Text>
+          ]}>
+          Characteristics
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Biological Sex: ${gender}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Age: ${age}`}</Text>
+        </View>
+
+        {/* CLINICAL RECORDS */}
         <Text
           style={[
-            styles.text,
+            styles.header,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Age: ${age}`}</Text>
-      </View>
+          ]}>
+          Clinical Records
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Clinical Records: `}</Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
