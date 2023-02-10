@@ -11,8 +11,6 @@ import {
 const App = () => {
   const [stepCount, setStepCount] = useState(0);
   const [bloodType, setBloodType] = useState(0);
-  const [gender, setGender] = useState('');
-  const [age, setAge] = useState(0);
 
   /* Activity */
   const [activeEnergy, setActiveEnergy] = useState(0);
@@ -30,6 +28,10 @@ const App = () => {
   const [fatPercentageSamples, setFatPercentageSamples] = useState('');
   const [leanBodyMass, setLeanBodyMass] = useState(0);
   const [leanBodyMassSamples, setLeanBodyMassSamples] = useState('');
+
+  /* Characteristics */
+  const [gender, setGender] = useState('');
+  const [age, setAge] = useState(0);
 
   const colorScheme = useColorScheme();
 
@@ -299,6 +301,27 @@ const App = () => {
             styles.text,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
           ]}>{`Lean Body Mass Samples: ${leanBodyMassSamples}`}</Text>
+      </View>
+
+      {/* CHARACTERISTICS */}
+      <Text
+        style={[
+          styles.header,
+          {color: colorScheme == 'dark' ? 'white' : 'black'},
+        ]}>
+        Characteristics
+      </Text>
+      <View style={styles.profileContainer}>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Biological Sex: ${gender}`}</Text>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Age: ${age}`}</Text>
       </View>
     </SafeAreaView>
   );
