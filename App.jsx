@@ -65,6 +65,9 @@ const App = () => {
   const [bloodAlcoholContent, setBloodAlcoholContent] = useState(0);
   const [bloodGlucoseSamples, setBloodGlucoseSamples] = useState('');
 
+  /* Nutrition */
+  const [carbohydratesSamples, setCarbohydratesSamples] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -505,6 +508,22 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Blood Gluscose Samples: ${bloodGlucoseSamples}`}</Text>
+        </View>
+
+        {/* NUTRITION */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Nutrition
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Carbohydrates Samples: ${carbohydratesSamples}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
