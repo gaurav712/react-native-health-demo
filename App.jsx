@@ -71,6 +71,9 @@ const App = () => {
   /* MINDFULNESS */
   const [mindfulSessions, setMindfulSessions] = useState('');
 
+  /* Sleep */
+  const [sleepSamples, setSleepSamples] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -544,6 +547,22 @@ const App = () => {
             styles.text,
             {color: colorScheme == 'dark' ? 'white' : 'black'},
           ]}>{`Mindful Sessions: ${mindfulSessions}`}</Text>
+      </View>
+
+      {/* SLEEP */}
+      <Text
+        style={[
+          styles.header,
+          {color: colorScheme == 'dark' ? 'white' : 'black'},
+        ]}>
+        Sleep
+      </Text>
+      <View style={styles.profileContainer}>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Sleep Samples: ${sleepSamples}`}</Text>
       </View>
     </SafeAreaView>
   );
