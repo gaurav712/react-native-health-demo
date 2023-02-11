@@ -59,6 +59,12 @@ const App = () => {
     useState('');
   const [headphoneAudioExposure, setHeadphoneAudioExposure] = useState('');
 
+  /* Lab Tests */
+  const [bloodAlcoholContentSamples, setBloodAlcoholContentSamples] =
+    useState('');
+  const [bloodAlcoholContent, setBloodAlcoholContent] = useState(0);
+  const [bloodGlucoseSamples, setBloodGlucoseSamples] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -473,6 +479,32 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Headphone Audio Exposure: ${headphoneAudioExposure}`}</Text>
+        </View>
+
+        {/* LAB TESTS */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Lab Tests
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Blood Alcohol Content Samples: ${bloodAlcoholContentSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Blood Alcohol Content: ${bloodAlcoholContent}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Blood Gluscose Samples: ${bloodGlucoseSamples}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
