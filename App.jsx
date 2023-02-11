@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 const App = () => {
-  const [stepCount, setStepCount] = useState(0);
   const [bloodType, setBloodType] = useState(0);
 
   /* Activity */
@@ -40,6 +39,20 @@ const App = () => {
   const [totalFatSamples, setTotalFatSamples] = useState('');
   const [water, setWater] = useState(0);
   const [waterSamples, setWaterSamples] = useState('');
+
+  /* Fitness */
+  const [dailyStepCountSamples, setDailyStepCountSamples] = useState('');
+  const [stepCount, setStepCount] = useState(0);
+  const [samples, setSamples] = useState('');
+  const [distanceSamples, setDistanceSamples] = useState('');
+  const [distance, setDistance] = useState(0);
+  const [distanceSwimmingSamples, setDistanceSwimmingSamples] = useState('');
+  const [distanceSwimming, setDistanceSwimming] = useState(0);
+  const [distanceCyclingSamples, setDistanceCyclingSamples] = useState('');
+  const [distanceCycling, setDistanceCycling] = useState(0);
+  const [distanceFlightsClimbedSamples, setDistanceFlightsClimbedSamples] =
+    useState('');
+  const [distanceFlightsClimbed, setDistanceFlightsClimbed] = useState(0);
 
   const colorScheme = useColorScheme();
 
@@ -73,19 +86,6 @@ const App = () => {
       AppleHealthKit.getHeartRateSamples(options, (_, results) => {
         /* Samples are now collected from HealthKit */
         console.log(JSON.stringify(results));
-      });
-
-      /* STEP COUNT */
-      let stepOptions = {
-        includeManuallyAdded: false, // optional: default true
-      };
-
-      AppleHealthKit.getStepCount(stepOptions, (err, results) => {
-        if (err) {
-          return;
-        }
-        const {value} = results;
-        setStepCount(value);
       });
 
       /* BLOOD TYPE */
@@ -204,27 +204,25 @@ const App = () => {
         }
         console.log('lean body mass samples', results);
       });
+
+      /* FITNESS */
+      let stepOptions = {
+        includeManuallyAdded: false, // optional: default true
+      };
+
+      AppleHealthKit.getStepCount(stepOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        const {value} = results;
+        setStepCount(value);
+      });
     });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text
-          style={[
-            styles.header,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>
-          Health Info
-        </Text>
-        <View style={styles.profileContainer}>
-          <Text
-            style={[
-              styles.text,
-              {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Steps walked today: ${stepCount}`}</Text>
-        </View>
-
         {/* ACTIVITY */}
         <Text
           style={[
@@ -383,6 +381,72 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Water Samples: ${waterSamples}`}</Text>
+        </View>
+
+        {/* FITNESS */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Fitness
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Daily Step Count Samples: ${dailyStepCountSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Step Count: ${stepCount}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Fitness Samples: ${samples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Distance Walking/Running Samples: ${distanceSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Distance Walking/Running: ${distance}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Distance Swimming Samples: ${distanceSwimmingSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Distance Swimming: ${distanceSwimming}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Distance Cycling Samples: ${distanceCyclingSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Distance Cycling: ${distanceCycling}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Flights Climbed Samples: ${distanceFlightsClimbedSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Flights Climbed: ${distanceFlightsClimbed}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
