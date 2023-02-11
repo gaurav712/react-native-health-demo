@@ -74,6 +74,21 @@ const App = () => {
   /* Sleep */
   const [sleepSamples, setSleepSamples] = useState('');
 
+  /* Vitals */
+  const [bloodPressureSamples, setBloodPressureSamples] = useState('');
+  const [electrocardiogramSamples, setElectrocardiogramSamples] = useState('');
+  const [heartRateSamples, setHeartRateSamples] = useState('');
+  const [heartRateVariabilitySamples, setHeartRateVariabilitySamples] =
+    useState('');
+  const [heartBeatSeriesSamples, setHeartBeatSeriesSamples] = useState('');
+  const [oxygenSaturationSamples, setOxygenSaturationSamples] = useState('');
+  const [restingHeartRateSamples, setRestingHeartRateSamples] = useState('');
+  const [vo2MaxSamples, setVo2MaxSamples] = useState('');
+  const [bmi, setBmi] = useState(0);
+  const [bmiSamples, setBmiSamples] = useState('');
+  const [respiratoryRateSamples, setRespiratoryRateSamples] = useState('');
+  const [walkingHeartRateAverage, setWalkingHeartRateAverage] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -562,6 +577,77 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Sleep Samples: ${sleepSamples}`}</Text>
+        </View>
+
+        {/* VITALS */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Vitals
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Blood Pressure Samples: ${bloodPressureSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Electrocardiogram Samples: ${electrocardiogramSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Heart Rate Samples: ${heartRateSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Heart Rate Variability Samples: ${heartRateVariabilitySamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Heart Beat Series Samples: ${heartBeatSeriesSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Oxygen Saturation Samples: ${oxygenSaturationSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Resting Heart Rate Samples: ${restingHeartRateSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Vo2Max Samples: ${vo2MaxSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`BMI: ${bmi}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`BMI Samples: ${bmiSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Resoiratory Rate Samples: ${respiratoryRateSamples}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Walking Heart Rate Average: ${walkingHeartRateAverage}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
