@@ -54,6 +54,11 @@ const App = () => {
     useState('');
   const [distanceFlightsClimbed, setDistanceFlightsClimbed] = useState(0);
 
+  /* Hearing */
+  const [environmentalAudioExposure, setEnvironmentalAudioExposure] =
+    useState('');
+  const [headphoneAudioExposure, setHeadphoneAudioExposure] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -447,6 +452,27 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Flights Climbed: ${distanceFlightsClimbed}`}</Text>
+        </View>
+
+        {/* HEARING */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Hearing
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Environmental Audio Exposure: ${environmentalAudioExposure}`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Headphone Audio Exposure: ${headphoneAudioExposure}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
