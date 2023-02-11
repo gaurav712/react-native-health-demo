@@ -531,39 +531,39 @@ const App = () => {
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Carbohydrates Samples: ${carbohydratesSamples}`}</Text>
         </View>
+
+        {/* MINDFULNESS */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Mindful Sessions
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Mindful Sessions: ${mindfulSessions}`}</Text>
+        </View>
+
+        {/* SLEEP */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Sleep
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Sleep Samples: ${sleepSamples}`}</Text>
+        </View>
       </ScrollView>
-
-      {/* MINDFULNESS */}
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        Mindful Sessions
-      </Text>
-      <View style={styles.profileContainer}>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Mindful Sessions: ${mindfulSessions}`}</Text>
-      </View>
-
-      {/* SLEEP */}
-      <Text
-        style={[
-          styles.header,
-          {color: colorScheme == 'dark' ? 'white' : 'black'},
-        ]}>
-        Sleep
-      </Text>
-      <View style={styles.profileContainer}>
-        <Text
-          style={[
-            styles.text,
-            {color: colorScheme == 'dark' ? 'white' : 'black'},
-          ]}>{`Sleep Samples: ${sleepSamples}`}</Text>
-      </View>
     </SafeAreaView>
   );
 };
