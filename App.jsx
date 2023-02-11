@@ -89,6 +89,9 @@ const App = () => {
   const [respiratoryRateSamples, setRespiratoryRateSamples] = useState('');
   const [walkingHeartRateAverage, setWalkingHeartRateAverage] = useState('');
 
+  /* Workout */
+  const [workoutSamples, setWorkoutSamples] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -648,6 +651,22 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Walking Heart Rate Average: ${walkingHeartRateAverage}`}</Text>
+        </View>
+
+        {/* VITALS */}
+        <Text
+          style={[
+            styles.header,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>
+          Workout
+        </Text>
+        <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Workout Samples: ${workoutSamples}`}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
