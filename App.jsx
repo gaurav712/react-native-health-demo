@@ -68,6 +68,9 @@ const App = () => {
   /* Nutrition */
   const [carbohydratesSamples, setCarbohydratesSamples] = useState('');
 
+  /* MINDFULNESS */
+  const [mindfulSessions, setMindfulSessions] = useState('');
+
   const colorScheme = useColorScheme();
 
   /* Permissions */
@@ -526,6 +529,22 @@ const App = () => {
             ]}>{`Carbohydrates Samples: ${carbohydratesSamples}`}</Text>
         </View>
       </ScrollView>
+
+      {/* MINDFULNESS */}
+      <Text
+        style={[
+          styles.header,
+          {color: colorScheme == 'dark' ? 'white' : 'black'},
+        ]}>
+        Mindful Sessions
+      </Text>
+      <View style={styles.profileContainer}>
+        <Text
+          style={[
+            styles.text,
+            {color: colorScheme == 'dark' ? 'white' : 'black'},
+          ]}>{`Mindful Sessions: ${mindfulSessions}`}</Text>
+      </View>
     </SafeAreaView>
   );
 };
