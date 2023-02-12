@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 
 const App = () => {
-  const [bloodType, setBloodType] = useState(0);
-
   /* Activity */
   const [activeEnergy, setActiveEnergy] = useState(0);
   const [basalEnergy, setBasalEnergy] = useState(0);
@@ -60,6 +58,7 @@ const App = () => {
   const [headphoneAudioExposure, setHeadphoneAudioExposure] = useState('');
 
   /* Lab Tests */
+  const [bloodType, setBloodType] = useState(0);
   const [bloodAlcoholContentSamples, setBloodAlcoholContentSamples] =
     useState('');
   const [bloodAlcoholContent, setBloodAlcoholContent] = useState(0);
@@ -517,6 +516,11 @@ const App = () => {
           Lab Tests
         </Text>
         <View style={styles.profileContainer}>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Blood Type: ${bloodType}`}</Text>
           <Text
             style={[
               styles.text,
