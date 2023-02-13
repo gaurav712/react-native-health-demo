@@ -116,13 +116,29 @@ const App = () => {
 
       /* Can now read or write to HealthKit */
 
-      const options = {
-        startDate: new Date(2020, 1, 1).toISOString(),
+      /* ACTIVITY */
+      let activityOptions = {
+        startDate: new Date(2023, 1, 11).toISOString(), // required
       };
+      AppleHealthKit.getActiveEnergyBurned(activityOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setActiveEnergy(JSON.stringify(results.map(item => item.value)));
+      });
 
-      AppleHealthKit.getHeartRateSamples(options, (_, results) => {
-        /* Samples are now collected from HealthKit */
-        console.log(JSON.stringify(results));
+      AppleHealthKit.getBasalEnergyBurned(activityOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setBasalEnergy(JSON.stringify(results.map(item => item.value)));
+      });
+
+      AppleHealthKit.getAppleStandTime(activityOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setStandingTime(JSON.stringify(results.map(item => item.value)));
       });
 
       /* BLOOD TYPE */
@@ -150,31 +166,6 @@ const App = () => {
         }
         const {age} = results;
         setAge(age);
-      });
-
-      /* ACTIVITY */
-      let activityOptions = {
-        startDate: new Date(2021, 0, 0).toISOString(), // required
-      };
-      AppleHealthKit.getActiveEnergyBurned(activityOptions, (err, results) => {
-        if (err) {
-          return;
-        }
-        console.log('active energy', results);
-      });
-
-      AppleHealthKit.getBasalEnergyBurned(activityOptions, (err, results) => {
-        if (err) {
-          return;
-        }
-        console.log('basal energy', results);
-      });
-
-      AppleHealthKit.getAppleStandTime(activityOptions, (err, results) => {
-        if (err) {
-          return;
-        }
-        console.log(results);
       });
 
       /* BODY */
