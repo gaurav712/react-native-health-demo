@@ -192,6 +192,26 @@ const App = () => {
         limit: 5,
       };
 
+      AppleHealthKit.getHeightSamples(samplesOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setHeightSamples(
+          JSON.stringify(results.map(item => (item.value * 2.54).toFixed(2))),
+        );
+      });
+
+      AppleHealthKit.getWeightSamples(samplesOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setWeightSamples(
+          JSON.stringify(
+            results.map(item => (item.value * 0.4535924).toFixed(2)),
+          ),
+        );
+      });
+
       AppleHealthKit.getBodyTemperatureSamples(
         samplesOptions,
         (err, results) => {
