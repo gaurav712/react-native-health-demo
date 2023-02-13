@@ -336,6 +336,58 @@ const App = () => {
         setLeanBodyMassSamples(JSON.stringify(results.map(item => item.value)));
       });
 
+      /* DIET */
+
+      let dietarySampleOptions = {
+        startDate: new Date(2021, 0, 0).toISOString(), // required
+        endDate: new Date().toISOString(), // required
+        limit: 5,
+      };
+
+      AppleHealthKit.getEnergyConsumedSamples(
+        dietarySampleOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setEnergyConsumedSamples(
+            JSON.stringify(results.map(item => item.value)),
+          );
+        },
+      );
+
+      AppleHealthKit.getProteinSamples(dietarySampleOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setProteinSamples(JSON.stringify(results.map(item => item.value)));
+      });
+
+      AppleHealthKit.getTotalFatSamples(
+        dietarySampleOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setTotalFatSamples(JSON.stringify(results.map(item => item.value)));
+        },
+      );
+
+      AppleHealthKit.getWater(null, (err, results) => {
+        if (err) {
+          return;
+        }
+        const {value} = results;
+        setWater(value);
+      });
+
+      AppleHealthKit.getWaterSamples(dietarySampleOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setWaterSamples(JSON.stringify(results.map(item => item.value)));
+      });
+
       /* FITNESS */
       let stepOptions = {
         includeManuallyAdded: false, // optional: default true
