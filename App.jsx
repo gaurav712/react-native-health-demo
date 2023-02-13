@@ -389,6 +389,25 @@ const App = () => {
       });
 
       /* FITNESS */
+
+      let fitnessSampleOptions = {
+        startDate: new Date(2023, 1, 1).toISOString(),
+        endDate: new Date().toISOString(),
+        limit: 5,
+      };
+
+      AppleHealthKit.getDailyStepCountSamples(
+        fitnessSampleOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setDailyStepCountSamples(
+            JSON.stringify(results.map(item => item.value.toFixed(0))),
+          );
+        },
+      );
+
       let stepOptions = {
         includeManuallyAdded: false, // optional: default true
       };
@@ -400,6 +419,28 @@ const App = () => {
         const {value} = results;
         setStepCount(value);
       });
+
+      AppleHealthKit.getSamples(
+        {...fitnessSampleOptions, type: 'Walking'},
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setDistanceSamples(
+            JSON.stringify(
+              results.map(({device, quantity, start}) => {
+                return {
+                  device,
+                  quantity,
+                  date: start,
+                };
+              }),
+              null,
+              2,
+            ),
+          );
+        },
+      );
     });
   }, []);
 
@@ -583,8 +624,12 @@ const App = () => {
           <Text
             style={[
               styles.text,
-              {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Fitness Samples: ${samples}`}</Text>
+              {
+                color: colorScheme == 'dark' ? 'white' : 'black',
+                fontStyle: 'italic',
+                color: 'red',
+              },
+            ]}>{`Fitness Samples can be for 'Walking', 'StairClimbing', 'Running', 'Cycling' or 'Workout'. For instance the following is for 'Walking':`}</Text>
           <Text
             style={[
               styles.text,
@@ -598,33 +643,42 @@ const App = () => {
           <Text
             style={[
               styles.text,
-              {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Distance Swimming Samples: ${distanceSwimmingSamples}`}</Text>
+              {
+                color: colorScheme == 'dark' ? 'white' : 'black',
+                fontStyle: 'italic',
+                color: 'red',
+              },
+            ]}>{`Similary it can be done for the following as well:`}</Text>
           <Text
             style={[
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Distance Swimming: ${distanceSwimming}`}</Text>
+            ]}>{`Distance Swimming Samples`}</Text>
           <Text
             style={[
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Distance Cycling Samples: ${distanceCyclingSamples}`}</Text>
+            ]}>{`Distance Swimming`}</Text>
           <Text
             style={[
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Distance Cycling: ${distanceCycling}`}</Text>
+            ]}>{`Distance Cycling Samples`}</Text>
           <Text
             style={[
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Flights Climbed Samples: ${distanceFlightsClimbedSamples}`}</Text>
+            ]}>{`Distance Cycling`}</Text>
           <Text
             style={[
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Flights Climbed: ${distanceFlightsClimbed}`}</Text>
+            ]}>{`Flights Climbed Samples`}</Text>
+          <Text
+            style={[
+              styles.text,
+              {color: colorScheme == 'dark' ? 'white' : 'black'},
+            ]}>{`Flights Climbed`}</Text>
         </View>
 
         {/* HEARING */}
