@@ -197,14 +197,18 @@ const App = () => {
         if (err) {
           return;
         }
-        setActiveEnergy(JSON.stringify(results.map(item => item.value)));
+        setActiveEnergy(
+          JSON.stringify(results.map(item => item.value.toFixed(2))),
+        );
       });
 
       AppleHealthKit.getBasalEnergyBurned(activityOptions, (err, results) => {
         if (err) {
           return;
         }
-        setBasalEnergy(JSON.stringify(results.map(item => item.value)));
+        setBasalEnergy(
+          JSON.stringify(results.map(item => item.value.toFixed(2))),
+        );
       });
 
       AppleHealthKit.getAppleStandTime(activityOptions, (err, results) => {
