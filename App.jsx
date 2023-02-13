@@ -20,7 +20,6 @@ const App = () => {
   const [weight, setWeight] = useState(0);
   const [heightSamples, setHeightSamples] = useState('');
   const [weightSamples, setWeightSamples] = useState('');
-  const [temperature, setTemperature] = useState(0);
   const [temperatureSamples, setTemperatureSamples] = useState('');
   const [fatPercentage, setFatPercentage] = useState(0);
   const [fatPercentageSamples, setFatPercentageSamples] = useState('');
@@ -218,7 +217,9 @@ const App = () => {
           if (err) {
             return;
           }
-          console.log('temperature samples', results);
+          setTemperatureSamples(
+            JSON.stringify(results.map(item => item.value)),
+          );
         },
       );
 
@@ -326,11 +327,6 @@ const App = () => {
               styles.text,
               {color: colorScheme == 'dark' ? 'white' : 'black'},
             ]}>{`Weight Samples: ${weightSamples}`}</Text>
-          <Text
-            style={[
-              styles.text,
-              {color: colorScheme == 'dark' ? 'white' : 'black'},
-            ]}>{`Temperature: ${temperature}`}</Text>
           <Text
             style={[
               styles.text,
