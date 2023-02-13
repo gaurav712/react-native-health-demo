@@ -506,6 +506,30 @@ const App = () => {
           setMindfulSessions(JSON.stringify(results.map(item => item.value)));
         },
       );
+
+      let sleepSamplesOptions = {
+        startDate: new Date(2023, 1, 1).toISOString(), // required
+        limit: 5, // optional; default no limit
+      };
+
+      AppleHealthKit.getSleepSamples(sleepSamplesOptions, (err, results) => {
+        if (err) {
+          return;
+        }
+        setSleepSamples(
+          JSON.stringify(
+            results.map(({startDate, endDate, value}) => {
+              return {
+                start: startDate,
+                end: endDate,
+                value,
+              };
+            }),
+            null,
+            2,
+          ),
+        );
+      });
     });
   }, []);
 
