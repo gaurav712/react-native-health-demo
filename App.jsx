@@ -227,7 +227,8 @@ const App = () => {
         if (err) {
           return;
         }
-        console.log('body fat percentage', results);
+        const {value} = results;
+        setFatPercentage(value);
       });
 
       AppleHealthKit.getBodyFatPercentageSamples(
@@ -236,7 +237,9 @@ const App = () => {
           if (err) {
             return;
           }
-          console.log('body fat percentage samples', results);
+          setFatPercentageSamples(
+            JSON.stringify(results.map(item => item.value)),
+          );
         },
       );
 
@@ -244,14 +247,15 @@ const App = () => {
         if (err) {
           return;
         }
-        console.log('lean mass', results);
+        const {value} = results;
+        setLeanBodyMass(value);
       });
 
       AppleHealthKit.getLeanBodyMassSamples(samplesOptions, (err, results) => {
         if (err) {
           return;
         }
-        console.log('lean body mass samples', results);
+        setLeanBodyMassSamples(JSON.stringify(results.map(item => item.value)));
       });
 
       /* FITNESS */
