@@ -490,6 +490,22 @@ const App = () => {
           );
         },
       );
+
+      /* MINDFULNESS */
+      let mindfulSessionsOptions = {
+        startDate: new Date(2023, 1, 1).toISOString(),
+      };
+
+      AppleHealthKit.getMindfulSession(
+        mindfulSessionsOptions,
+        (err, results) => {
+          if (err) {
+            console.log('error getting mindful session: ', err);
+            return;
+          }
+          setMindfulSessions(JSON.stringify(results.map(item => item.value)));
+        },
+      );
     });
   }, []);
 
