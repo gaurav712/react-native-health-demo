@@ -441,6 +441,36 @@ const App = () => {
           );
         },
       );
+
+      /* HEARING */
+      let hearingSamplesOptions = {
+        startDate: new Date(2023, 1, 1).toISOString(),
+        limit: 10,
+      };
+
+      AppleHealthKit.getEnvironmentalAudioExposure(
+        hearingSamplesOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setEnvironmentalAudioExposure(
+            JSON.stringify(results.map(item => item.value)),
+          );
+        },
+      );
+
+      AppleHealthKit.getHeadphoneAudioExposure(
+        hearingSamplesOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setHeadphoneAudioExposure(
+            JSON.stringify(results.map(item => item.value)),
+          );
+        },
+      );
     });
   }, []);
 
