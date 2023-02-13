@@ -471,6 +471,25 @@ const App = () => {
           );
         },
       );
+
+      /* NUTRITION */
+      let nutritionSampleOptions = {
+        unit: 'gramUnit', // optional; default 'gram'
+        startDate: new Date(2023, 1, 1).toISOString(), // required
+        limit: 5, // optional; default no limit
+      };
+
+      AppleHealthKit.getCarbohydratesSamples(
+        nutritionSampleOptions,
+        (err, results) => {
+          if (err) {
+            return;
+          }
+          setCarbohydratesSamples(
+            JSON.stringify(results.map(item => item.value)),
+          );
+        },
+      );
     });
   }, []);
 
